@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reading Practice — IELTS Practice Hub</title>
+  <script src="darkmode.js"></script>
+  <link rel="stylesheet" href="darkmode.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Highlight paragraphs when a question references them */
+    .para-highlight { background-color: #eff6ff; border-left: 3px solid #3b82f6; padding-left: 12px; transition: all 0.3s; }
+    html.dark .para-highlight { background-color: #172554 !important; border-color: #60a5fa; }
+
+    /* Answer feedback colours */
+    .ans-correct { background-color: #f0fdf4 !important; border-color: #22c55e !important; color: #15803d !important; }
+    .ans-wrong   { background-color: #fef2f2 !important; border-color: #ef4444 !important; color: #b91c1c !important; }
+    html.dark .ans-correct { background-color: #052e16 !important; color: #4ade80 !important; }
+    html.dark .ans-wrong   { background-color: #450a0a !important; color: #f87171 !important; }
+
+    /* Make radio options look like buttons */
+    .option-btn { display: block; width: 100%; text-align: left; cursor: pointer; }
+    .option-btn input[type="radio"] { display: none; }
+    .option-btn.selected { border-color: #8b5cf6; background-color: #f5f3ff; color: #5b21b6; }
+    html.dark .option-btn.selected { background-color: #2e1065 !important; color: #c084fc !important; border-color: #7c3aed !important; }
+
+    /* Sticky passage on desktop */
+    @media (min-width: 1024px) {
+      #passage-col { position: sticky; top: 72px; max-height: calc(100vh - 90px); overflow-y: auto; }
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">IP</span>
+        </div>
+        <span class="text-xl font-bold text-blue-600">IELTS Practice Hub</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+        <a href="speaking.html" class="text-gray-600 hover:text-blue-600 transition">Speaking</a>
+        <a href="writing.html" class="text-gray-600 hover:text-blue-600 transition">Writing</a>
+        <a href="reading.html" class="text-amber-600 font-semibold border-b-2 border-amber-500 pb-0.5">Reading</a>
+        <a href="vocabulary.html" class="text-gray-600 hover:text-blue-600 transition">Vocabulary</a>
+        <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+          class="md:hidden w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition"
+          aria-label="Toggle menu">
+          <svg id="menu-icon" class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="close-icon" class="w-5 h-5 text-gray-600 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button id="dark-toggle" onclick="toggleDarkMode()"
+          class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition text-base"
+          title="Toggle dark mode">🌙</button>
+        <a href="#" class="hidden sm:inline-block bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition text-sm">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg z-40">
+    <div class="px-6 py-4 flex flex-col gap-1">
+      <a href="index.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Home</a>
+      <a href="speaking.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Speaking</a>
+      <a href="writing.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Writing</a>
+      <a href="reading.html" class="font-semibold text-amber-600 px-3 py-2 rounded-lg bg-amber-50">Reading</a>
+      <a href="vocabulary.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Vocabulary</a>
+      <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Dashboard</a>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-12 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-2 text-amber-100 text-sm mb-3">
+          <a href="index.html" class="hover:text-white transition">Home</a>
+          <span>/</span>
+          <span class="text-white">Reading Practice</span>
+        </div>
+        <h1 class="text-4xl font-extrabold mb-2">Reading Practice</h1>
+        <p class="text-amber-100 text-lg">Read the passage and answer all questions before time runs out.</p>
+      </div>
+      <!-- Timer -->
+      <div class="bg-white bg-opacity-20 border border-white border-opacity-30 rounded-2xl px-8 py-4 text-center min-w-48">
+        <div class="text-4xl font-extrabold" id="timer-display">20:00</div>
+        <div class="text-amber-100 text-sm mt-1">Time Remaining</div>
+        <div class="flex gap-2 justify-center mt-3">
+          <button onclick="startTimer()" id="timer-start"
+            class="bg-white text-amber-600 font-bold px-4 py-1.5 rounded-lg text-sm hover:bg-amber-50 transition">
+            Start
+          </button>
+          <button onclick="resetTimer()"
+            class="border border-white border-opacity-50 text-white font-semibold px-4 py-1.5 rounded-lg text-sm hover:bg-white hover:bg-opacity-10 transition">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Passage Switcher -->
+  <div class="max-w-6xl mx-auto px-6 pt-6 flex items-center gap-3">
+    <span class="text-sm text-gray-500 font-medium">Passage:</span>
+    <div class="flex gap-2">
+      <button onclick="loadPassage(0)" id="pbtn-0"
+        class="px-4 py-1.5 rounded-lg text-sm font-semibold border-2 bg-amber-500 text-white border-amber-500 transition">
+        1 — The Science of Sleep
+      </button>
+      <button onclick="loadPassage(1)" id="pbtn-1"
+        class="px-4 py-1.5 rounded-lg text-sm font-semibold border-2 bg-white text-gray-600 border-gray-200 hover:border-amber-400 transition">
+        2 — Urban Agriculture
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="max-w-6xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-8 items-start">
+
+    <!-- Passage Column -->
+    <div id="passage-col">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-extrabold text-gray-800 mb-1" id="passage-title">—</h2>
+        <p class="text-xs text-gray-400 uppercase tracking-wide mb-6" id="passage-meta">Academic Reading Passage</p>
+        <div id="passage-body" class="text-gray-700 leading-8 text-base space-y-5"></div>
+      </div>
+    </div>
+
+    <!-- Questions Column -->
+    <div>
+      <!-- Section 1: TFNG -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-6">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Questions 1–6</span>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-1">True / False / Not Given</h3>
+        <p class="text-sm text-gray-500 mb-6">
+          <strong>TRUE</strong> — the statement agrees with the passage.<br>
+          <strong>FALSE</strong> — the statement contradicts the passage.<br>
+          <strong>NOT GIVEN</strong> — there is no information about this in the passage.
+        </p>
+        <div id="tfng-questions" class="space-y-6"></div>
+      </div>
+
+      <!-- Section 2: Multiple Choice -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-6">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Questions 7–10</span>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-1">Multiple Choice</h3>
+        <p class="text-sm text-gray-500 mb-6">Choose the best answer, A, B, C, or D.</p>
+        <div id="mc-questions" class="space-y-8"></div>
+      </div>
+
+      <!-- Submit / Score -->
+      <div id="submit-area">
+        <div id="unanswered-warning" class="hidden mb-4 bg-yellow-50 border border-yellow-200 text-yellow-700 rounded-xl px-5 py-3 text-sm font-medium"></div>
+        <button onclick="submitAnswers()"
+          class="w-full bg-amber-500 text-white py-4 rounded-xl font-bold text-lg hover:bg-amber-600 transition shadow-md">
+          Submit Answers
+        </button>
+      </div>
+
+      <!-- Score Panel (hidden until submit) -->
+      <div id="score-panel" class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mt-6">
+        <div class="text-center mb-6">
+          <div class="text-5xl font-extrabold" id="score-display">—</div>
+          <div class="text-gray-500 mt-1" id="score-label">—</div>
+          <div class="text-3xl mt-3" id="score-emoji">—</div>
+        </div>
+        <div class="grid grid-cols-3 gap-3 text-center mb-6">
+          <div class="bg-green-50 rounded-xl p-3 border border-green-100">
+            <div class="text-2xl font-extrabold text-green-600" id="score-correct">0</div>
+            <div class="text-xs text-green-500 mt-1">Correct</div>
+          </div>
+          <div class="bg-red-50 rounded-xl p-3 border border-red-100">
+            <div class="text-2xl font-extrabold text-red-500" id="score-wrong">0</div>
+            <div class="text-xs text-red-400 mt-1">Wrong</div>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-3 border border-gray-100">
+            <div class="text-2xl font-extrabold text-gray-600" id="score-total">0</div>
+            <div class="text-xs text-gray-400 mt-1">Total</div>
+          </div>
+        </div>
+
+        <!-- IELTS Band Estimate -->
+        <div class="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 mb-6 text-center">
+          <p class="text-xs text-amber-600 uppercase font-bold tracking-wide mb-1">Estimated Reading Band</p>
+          <p class="text-3xl font-extrabold text-amber-700" id="band-estimate">—</p>
+        </div>
+
+        <button onclick="tryAgain()"
+          class="w-full border-2 border-amber-400 text-amber-600 py-3 rounded-xl font-bold hover:bg-amber-50 transition">
+          Try Another Passage
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 py-8 px-6 text-center text-sm mt-12">
+    <p>&copy; 2026 IELTS Practice Hub. Built for learners, by learners.</p>
+  </footer>
+
+  <script>
+    // ── Passage Data ──────────────────────────────────────────────────────────
+
+    const passages = [
+      {
+        title: "The Science of Sleep",
+        meta: "Academic Reading Passage · Approximately 480 words",
+        paragraphs: [
+          { label: "A", text: "Sleep is one of the most fundamental biological needs of the human body, yet it remains one of the least understood. On average, humans spend approximately one-third of their lives asleep — roughly 25 years over a lifetime. Despite this enormous investment of time, scientists are still uncovering the precise reasons why sleep is so essential, and the consequences of getting too little of it." },
+          { label: "B", text: "Sleep is not a single, uniform state. It consists of several distinct stages that cycle through the night in roughly 90-minute intervals. The two main categories are non-rapid eye movement (NREM) sleep and rapid eye movement (REM) sleep. During NREM sleep, the body enters progressively deeper levels of unconsciousness, with slow brain waves and reduced heart rate. REM sleep, by contrast, is characterised by vivid dreaming, rapid eye movements, and brain activity that resembles a waking state. A full night typically involves four to six complete sleep cycles, with REM periods becoming longer as the night progresses." },
+          { label: "C", text: "Among the most critical functions of sleep is memory consolidation. During sleep, the brain systematically strengthens newly formed neural connections, transferring information from short-term memory to long-term storage. Researchers at the University of California found that students who slept after learning performed significantly better on tests taken 12 hours later compared to those who stayed awake. Sleep also enables physical restoration: the body repairs damaged cells, synthesises proteins, and releases growth hormones almost exclusively during deep NREM stages." },
+          { label: "D", text: "The consequences of sleep deprivation are far-reaching. Even a single night of poor sleep can impair concentration, decision-making, and emotional regulation. Chronically sleep-deprived individuals face elevated risks of obesity, type 2 diabetes, cardiovascular disease, and weakened immune function. Alarmingly, many people who are sleep-deprived are unaware of their impairment — studies show that after several days of restricted sleep, individuals often rate their own performance as adequate, even as objective measures show significant decline." },
+          { label: "E", text: "Modern society poses serious threats to healthy sleep. The widespread use of smartphones, tablets, and computers exposes people to blue-wavelength light in the hours before bedtime. This light suppresses the production of melatonin — the hormone that signals to the body that it is time to sleep — thereby delaying the onset of sleep. Shift work, irregular schedules, and chronic stress further compound the problem. Sleep researchers increasingly argue that public health campaigns need to treat sleep deprivation with the same urgency as diet and exercise, given the profound impact it has on virtually every system in the body." },
+        ],
+        tfng: [
+          { q: "Humans spend approximately one-third of their lives sleeping.", answer: "TRUE",      ref: "A", explanation: "Paragraph A states: 'humans spend approximately one-third of their lives asleep'." },
+          { q: "Scientists now fully understand all the reasons why sleep is necessary.", answer: "FALSE",     ref: "A", explanation: "Paragraph A says scientists 'are still uncovering the precise reasons' — they do not yet fully understand sleep." },
+          { q: "During REM sleep, brain activity is similar to when a person is awake.", answer: "TRUE",      ref: "B", explanation: "Paragraph B describes REM sleep as having 'brain activity that resembles a waking state'." },
+          { q: "Growth hormones are released primarily during REM sleep.", answer: "FALSE",     ref: "C", explanation: "Paragraph C states growth hormones are released 'during deep NREM stages', not REM." },
+          { q: "Most sleep-deprived people are aware that their performance has declined.", answer: "FALSE",     ref: "D", explanation: "Paragraph D states many sleep-deprived people 'often rate their own performance as adequate' despite objective decline." },
+          { q: "Governments in several countries have introduced laws to limit screen time before bed.", answer: "NOT GIVEN", ref: "E", explanation: "The passage mentions the problem of screens but does not discuss any laws or government regulations." },
+        ],
+        mc: [
+          {
+            q: "According to paragraph B, which of the following is TRUE about sleep cycles?",
+            options: ["A single night of sleep contains exactly four sleep cycles.", "REM periods become shorter as the night goes on.", "A full night usually contains four to six sleep cycles.", "NREM sleep involves vivid dreaming and rapid eye movements."],
+            answer: 2,
+            explanation: "Paragraph B states 'A full night typically involves four to six complete sleep cycles'."
+          },
+          {
+            q: "The word 'consolidation' in paragraph C is closest in meaning to:",
+            options: ["Destruction and removal of old memories.", "Strengthening and stabilising information.", "The rapid transfer of data between computers.", "A form of deep unconsciousness."],
+            answer: 1,
+            explanation: "The context in paragraph C — 'the brain systematically strengthens newly formed neural connections' — shows that consolidation means strengthening/stabilising."
+          },
+          {
+            q: "Which of the following is NOT mentioned as an effect of sleep deprivation in paragraph D?",
+            options: ["Impaired decision-making.", "Elevated risk of type 2 diabetes.", "Reduced ability to learn new languages.", "Weakened immune function."],
+            answer: 2,
+            explanation: "Learning languages is not mentioned. Paragraph D lists concentration, decision-making, emotional regulation, obesity, diabetes, cardiovascular disease, and immune function."
+          },
+          {
+            q: "What is the main purpose of the final paragraph (E)?",
+            options: ["To provide detailed advice on how to cure insomnia.", "To outline modern factors that disrupt sleep and call for greater awareness.", "To explain the chemistry of melatonin production in the brain.", "To compare sleep habits across different countries."],
+            answer: 1,
+            explanation: "Paragraph E identifies modern threats (screens, shift work, stress) and argues sleep deprivation needs to be treated as a public health priority."
+          },
+        ],
+      },
+
+      {
+        title: "Urban Agriculture: Growing Food in the City",
+        meta: "Academic Reading Passage · Approximately 470 words",
+        paragraphs: [
+          { label: "A", text: "As the world's urban population continues to expand — with the United Nations estimating that nearly 70% of humanity will live in cities by 2050 — questions about food security and sustainable living have moved to the forefront of urban planning. Urban agriculture, the practice of cultivating, processing, and distributing food within or around cities, has emerged as one promising response to these pressures. From rooftop gardens in New York to vertical farms in Singapore, cities worldwide are experimenting with innovative ways to grow food closer to where it is consumed." },
+          { label: "B", text: "The history of urban food production is longer than many assume. During both World Wars, governments across Europe and North America actively encouraged citizens to grow food in any available space — a campaign immortalised by the term 'victory gardens'. At the peak of this movement in the United States, approximately 20 million victory gardens produced roughly 40% of the country's vegetables. After the wars, however, rising incomes and affordable transport made long-distance food supply chains economically attractive, and urban food production fell sharply out of favour." },
+          { label: "C", text: "Modern urban agriculture takes many forms. Community gardens give residents shared access to growing plots in parks or vacant lots. Rooftop farms use lightweight growing media and drip irrigation to cultivate produce on building tops. Perhaps most technologically advanced are vertical farms — multi-storey indoor facilities where crops grow under LED lighting in precisely controlled environments, without soil, using hydroponic or aeroponic systems. Proponents argue that vertical farms can produce yields up to 100 times greater per square metre than conventional outdoor farming, while using up to 95% less water." },
+          { label: "D", text: "Despite these advantages, urban agriculture faces significant challenges. Land in cities is expensive and scarce, making large-scale production economically difficult. The energy costs of operating vertical farms — particularly lighting — remain high, and critics question whether these costs offset the environmental benefits. Research published in the journal Nature Food in 2022 found that, in most cases, the carbon footprint of lettuce grown in vertical farms was significantly higher than lettuce grown in outdoor fields, due to energy consumption." },
+          { label: "E", text: "Nevertheless, advocates point to benefits that extend beyond food production alone. Urban farms create green spaces that reduce the urban heat island effect, manage stormwater, and improve air quality. They also provide educational opportunities, strengthen community bonds, and can supply fresh produce to urban areas that lack access to affordable healthy food — often called 'food deserts'. Whether urban agriculture can ever feed entire cities remains debatable, but its role as one component of a more resilient and equitable urban food system seems increasingly well-established." },
+        ],
+        tfng: [
+          { q: "By 2050, the majority of the world's population is expected to live in cities.", answer: "TRUE",      ref: "A", explanation: "Paragraph A cites the UN estimate that 'nearly 70% of humanity will live in cities by 2050'." },
+          { q: "Victory gardens during World War II produced all of the vegetables consumed in the USA.", answer: "FALSE",     ref: "B", explanation: "Paragraph B states they produced 'roughly 40%' of the country's vegetables, not all of them." },
+          { q: "Vertical farms use significantly less water than conventional outdoor farming.", answer: "TRUE",      ref: "C", explanation: "Paragraph C states vertical farms can use 'up to 95% less water'." },
+          { q: "Vertical farms currently produce more food than all outdoor farms combined.", answer: "NOT GIVEN", ref: "C", explanation: "The passage mentions higher yields per square metre but makes no comparison of total global output." },
+          { q: "A 2022 study found vertical farm lettuce had a higher carbon footprint than field-grown lettuce.", answer: "TRUE",      ref: "D", explanation: "Paragraph D directly states this finding from the journal Nature Food." },
+          { q: "All urban planners now agree that urban agriculture is the best solution to food insecurity.", answer: "NOT GIVEN", ref: "E", explanation: "The passage mentions debate about whether urban agriculture can feed entire cities, but does not report any consensus among planners." },
+        ],
+        mc: [
+          {
+            q: "What caused urban food production to decline after the World Wars, according to paragraph B?",
+            options: ["Governments banned urban farming to protect rural farmers.", "Rising incomes and cheap transport made distant food supply chains more attractive.", "Victory gardens were destroyed to make way for new housing developments.", "People lost interest in growing food due to poor harvests."],
+            answer: 1,
+            explanation: "Paragraph B states 'rising incomes and affordable transport made long-distance food supply chains economically attractive'."
+          },
+          {
+            q: "Which of the following best describes a vertical farm, as explained in paragraph C?",
+            options: ["A community garden on a rooftop with shared growing plots.", "An outdoor farm that uses traditional soil-based growing methods.", "A multi-storey indoor facility growing crops without soil under controlled conditions.", "A government scheme to distribute fresh produce in food deserts."],
+            answer: 2,
+            explanation: "Paragraph C defines vertical farms as 'multi-storey indoor facilities where crops grow under LED lighting in precisely controlled environments, without soil'."
+          },
+          {
+            q: "The main criticism of vertical farming mentioned in paragraph D is that:",
+            options: ["The produce tastes worse than field-grown vegetables.", "High energy use may cancel out the environmental benefits.", "It requires more water than conventional farming.", "Vertical farms produce lower crop yields per square metre."],
+            answer: 1,
+            explanation: "Paragraph D highlights high energy costs and cites a study showing a higher carbon footprint, questioning whether benefits offset the energy use."
+          },
+          {
+            q: "The phrase 'food deserts' in paragraph E refers to:",
+            options: ["Agricultural regions that have been damaged by drought.", "Urban areas lacking access to affordable, healthy food.", "Vertical farms that fail to produce enough yield.", "Desert regions where urban farming is being trialled."],
+            answer: 1,
+            explanation: "Paragraph E defines food deserts as 'urban areas that lack access to affordable healthy food'."
+          },
+        ],
+      },
+    ];
+
+    // ── State ─────────────────────────────────────────────────────────────────
+
+    let activePassage  = 0;
+    let timerInterval  = null;
+    let secondsLeft    = 20 * 60;
+    let submitted      = false;
+
+    // ── Timer ─────────────────────────────────────────────────────────────────
+
+    function fmt(s) {
+      return `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`;
+    }
+
+    function startTimer() {
+      if (timerInterval) return;
+      document.getElementById('timer-start').disabled = true;
+      document.getElementById('timer-start').classList.add('opacity-50');
+      timerInterval = setInterval(() => {
+        secondsLeft--;
+        const el = document.getElementById('timer-display');
+        el.textContent = fmt(secondsLeft);
+        if (secondsLeft <= 60)  { el.classList.add('text-red-300'); }
+        if (secondsLeft <= 0)   { clearInterval(timerInterval); timerInterval = null; submitAnswers(); }
+      }, 1000);
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      secondsLeft = 20 * 60;
+      document.getElementById('timer-display').textContent = fmt(secondsLeft);
+      document.getElementById('timer-display').classList.remove('text-red-300');
+      const btn = document.getElementById('timer-start');
+      btn.disabled = false;
+      btn.classList.remove('opacity-50');
+    }
+
+    // ── Render Passage ────────────────────────────────────────────────────────
+
+    function loadPassage(idx) {
+      activePassage = idx;
+      submitted = false;
+
+      // Update passage tab buttons
+      [0, 1].forEach(i => {
+        document.getElementById(`pbtn-${i}`).className =
+          `px-4 py-1.5 rounded-lg text-sm font-semibold border-2 transition ${
+            i === idx
+              ? 'bg-amber-500 text-white border-amber-500'
+              : 'bg-white text-gray-600 border-gray-200 hover:border-amber-400'
+          }`;
+      });
+
+      const p = passages[idx];
+      document.getElementById('passage-title').textContent = p.title;
+      document.getElementById('passage-meta').textContent  = p.meta;
+
+      // Render paragraphs with letter labels
+      document.getElementById('passage-body').innerHTML = p.paragraphs.map(para => `
+        <div id="para-${para.label}" class="transition-all duration-300 rounded-lg pr-1">
+          <span class="inline-block font-extrabold text-amber-500 mr-2">${para.label}</span>${para.text}
+        </div>
+      `).join('');
+
+      renderTFNG(p.tfng);
+      renderMC(p.mc);
+
+      // Reset submit area
+      document.getElementById('score-panel').classList.add('hidden');
+      document.getElementById('submit-area').classList.remove('hidden');
+      document.getElementById('unanswered-warning').classList.add('hidden');
+      resetTimer();
+    }
+
+    // ── Render TFNG ───────────────────────────────────────────────────────────
+
+    function renderTFNG(questions) {
+      document.getElementById('tfng-questions').innerHTML = questions.map((q, i) => `
+        <div id="tfng-${i}" class="border border-gray-100 rounded-xl p-4">
+          <p class="font-medium text-gray-800 mb-3">
+            <span class="text-amber-500 font-bold mr-1">${i + 1}.</span> ${q.q}
+          </p>
+          <div class="flex gap-2 flex-wrap">
+            ${['TRUE', 'FALSE', 'NOT GIVEN'].map(opt => `
+              <label class="option-btn border-2 border-gray-200 rounded-lg px-4 py-2 text-sm font-semibold text-gray-600 hover:border-purple-400 transition cursor-pointer select-none"
+                     id="tfng-${i}-${opt.replace(' ', '_')}">
+                <input type="radio" name="tfng-${i}" value="${opt}" onchange="selectOption(this, 'tfng-${i}')">
+                ${opt}
+              </label>
+            `).join('')}
+          </div>
+          <div id="tfng-exp-${i}" class="hidden mt-3 text-sm rounded-lg px-3 py-2 border"></div>
+        </div>
+      `).join('');
+    }
+
+    // ── Render MC ─────────────────────────────────────────────────────────────
+
+    function renderMC(questions) {
+      document.getElementById('mc-questions').innerHTML = questions.map((q, i) => `
+        <div id="mc-${i}" class="border border-gray-100 rounded-xl p-4">
+          <p class="font-medium text-gray-800 mb-4">
+            <span class="text-blue-500 font-bold mr-1">${i + 7}.</span> ${q.q}
+          </p>
+          <div class="space-y-2">
+            ${q.options.map((opt, j) => `
+              <label class="option-btn border-2 border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 hover:border-purple-400 transition cursor-pointer select-none flex items-start gap-3"
+                     id="mc-${i}-${j}">
+                <input type="radio" name="mc-${i}" value="${j}" onchange="selectOption(this, 'mc-${i}')">
+                <span class="font-bold text-gray-400 flex-shrink-0">${'ABCD'[j]}.</span>
+                <span>${opt}</span>
+              </label>
+            `).join('')}
+          </div>
+          <div id="mc-exp-${i}" class="hidden mt-3 text-sm rounded-lg px-3 py-2 border"></div>
+        </div>
+      `).join('');
+    }
+
+    // ── Option selection (highlight chosen) ───────────────────────────────────
+
+    function selectOption(input, groupId) {
+      // Remove 'selected' from all siblings
+      document.querySelectorAll(`[id^="${groupId}-"]`).forEach(el => {
+        if (el.tagName === 'LABEL') el.classList.remove('selected');
+      });
+      // Mark the chosen label as selected
+      input.closest('label').classList.add('selected');
+      // Highlight referenced paragraph
+      const prefix = groupId.startsWith('tfng') ? 'tfng' : 'mc';
+      const idx     = parseInt(groupId.split('-')[1]);
+      const p       = passages[activePassage];
+      const ref     = prefix === 'tfng' ? p.tfng[idx]?.ref : null;
+      if (ref) highlightPara(ref);
+    }
+
+    function highlightPara(label) {
+      document.querySelectorAll('[id^="para-"]').forEach(el => el.classList.remove('para-highlight'));
+      const el = document.getElementById(`para-${label}`);
+      if (el) { el.classList.add('para-highlight'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    }
+
+    // ── Submit ────────────────────────────────────────────────────────────────
+
+    function submitAnswers() {
+      if (submitted) return;
+
+      const p = passages[activePassage];
+      let correct = 0, wrong = 0;
+      const unanswered = [];
+
+      // Check TFNG
+      p.tfng.forEach((q, i) => {
+        const sel = document.querySelector(`input[name="tfng-${i}"]:checked`);
+        const container = document.getElementById(`tfng-${i}`);
+        const expEl     = document.getElementById(`tfng-exp-${i}`);
+
+        if (!sel) { unanswered.push(i + 1); return; }
+
+        const isCorrect = sel.value === q.answer;
+        isCorrect ? correct++ : wrong++;
+
+        // Style all labels
+        ['TRUE', 'FALSE', 'NOT_GIVEN'].forEach(opt => {
+          const lbl = document.getElementById(`tfng-${i}-${opt}`);
+          if (!lbl) return;
+          const val = opt.replace('_', ' ');
+          if (val === q.answer)   lbl.classList.add('ans-correct');
+          else if (sel.value === val) lbl.classList.add('ans-wrong');
+          lbl.querySelector('input').disabled = true;
+        });
+
+        // Show explanation
+        expEl.classList.remove('hidden');
+        expEl.className = `mt-3 text-sm rounded-lg px-3 py-2 border ${isCorrect ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'}`;
+        expEl.textContent = q.explanation;
+      });
+
+      // Check MC
+      p.mc.forEach((q, i) => {
+        const sel = document.querySelector(`input[name="mc-${i}"]:checked`);
+        const expEl = document.getElementById(`mc-exp-${i}`);
+
+        if (!sel) { unanswered.push(i + 7); return; }
+
+        const chosen    = parseInt(sel.value);
+        const isCorrect = chosen === q.answer;
+        isCorrect ? correct++ : wrong++;
+
+        q.options.forEach((_, j) => {
+          const lbl = document.getElementById(`mc-${i}-${j}`);
+          if (!lbl) return;
+          if (j === q.answer)       lbl.classList.add('ans-correct');
+          else if (j === chosen)    lbl.classList.add('ans-wrong');
+          lbl.querySelector('input').disabled = true;
+        });
+
+        expEl.classList.remove('hidden');
+        expEl.className = `mt-3 text-sm rounded-lg px-3 py-2 border ${isCorrect ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'}`;
+        expEl.textContent = q.explanation;
+      });
+
+      // Unanswered warning
+      if (unanswered.length > 0 && correct + wrong < 10) {
+        const w = document.getElementById('unanswered-warning');
+        w.classList.remove('hidden');
+        w.textContent = `You left question(s) ${unanswered.join(', ')} unanswered. Submitting anyway.`;
+      }
+
+      // Score panel
+      const total = correct + wrong;
+      const pct   = total > 0 ? Math.round((correct / 10) * 100) : 0;
+
+      document.getElementById('score-correct').textContent = correct;
+      document.getElementById('score-wrong').textContent   = wrong + (10 - total);
+      document.getElementById('score-total').textContent   = 10;
+      document.getElementById('score-display').textContent = `${correct} / 10`;
+
+      let emoji, label, band;
+      if (correct >= 9)      { emoji='🏆'; label='Exceptional performance!';     band='Band 8.5 – 9.0'; }
+      else if (correct >= 7) { emoji='🌟'; label='Strong reading skills!';       band='Band 7.0 – 8.0'; }
+      else if (correct >= 5) { emoji='👍'; label='Good effort — keep practising.'; band='Band 5.5 – 6.5'; }
+      else                   { emoji='📖'; label='Review the passage carefully.'; band='Band 4.0 – 5.0'; }
+
+      document.getElementById('score-emoji').textContent  = emoji;
+      document.getElementById('score-label').textContent  = label;
+      document.getElementById('band-estimate').textContent = band;
+      document.getElementById('score-panel').classList.remove('hidden');
+      document.getElementById('submit-area').classList.add('hidden');
+      document.getElementById('score-panel').scrollIntoView({ behavior: 'smooth' });
+
+      // Save to localStorage
+      saveActivity();
+      submitted = true;
+      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+    }
+
+    function tryAgain() {
+      loadPassage(activePassage === 0 ? 1 : 0);
+    }
+
+    // ── localStorage ──────────────────────────────────────────────────────────
+
+    function saveActivity() {
+      const data = JSON.parse(localStorage.getItem('ieltshub') || '{}');
+      if (!data.reading) data.reading = { sessions: 0, lastDate: null };
+      data.reading.sessions++;
+      data.reading.lastDate = new Date().toISOString();
+      updateStreak(data);
+      localStorage.setItem('ieltshub', JSON.stringify(data));
+    }
+
+    function updateStreak(data) {
+      const today = new Date().toDateString();
+      if (!data.streak) data.streak = { count: 0, lastDate: null };
+      if (data.streak.lastDate === today) return;
+      const yesterday = new Date(Date.now() - 86400000).toDateString();
+      data.streak.count = data.streak.lastDate === yesterday ? data.streak.count + 1 : 1;
+      data.streak.lastDate = today;
+    }
+
+    // ── Mobile Menu ───────────────────────────────────────────────────────────
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('menu-icon').classList.toggle('hidden');
+      document.getElementById('close-icon').classList.toggle('hidden');
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    loadPassage(0);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IELTS Practice Hub</title>
+  <script src="darkmode.js"></script>
+  <link rel="stylesheet" href="darkmode.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">IP</span>
+        </div>
+        <span class="text-xl font-bold text-blue-600">IELTS Practice Hub</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+        <a href="#features" class="text-gray-600 hover:text-blue-600 transition">Features</a>
+        <a href="#" class="text-gray-600 hover:text-blue-600 transition">Practice</a>
+        <a href="reading.html" class="text-gray-600 hover:text-blue-600 transition">Reading</a>
+        <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+          class="md:hidden w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition"
+          aria-label="Toggle menu">
+          <svg id="menu-icon" class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="close-icon" class="w-5 h-5 text-gray-600 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button id="dark-toggle" onclick="toggleDarkMode()"
+          class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition text-base"
+          title="Toggle dark mode">🌙</button>
+        <a href="#" class="hidden sm:inline-block bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg z-40">
+    <div class="px-6 py-4 flex flex-col gap-1">
+      <a href="index.html" class="font-semibold text-blue-600 px-3 py-2 rounded-lg bg-blue-50">Home</a>
+      <a href="speaking.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Speaking</a>
+      <a href="writing.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Writing</a>
+      <a href="reading.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Reading</a>
+      <a href="vocabulary.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Vocabulary</a>
+      <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Dashboard</a>
+      <div class="border-t border-gray-100 mt-2 pt-3">
+        <a href="#" class="block text-center bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white py-24 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="inline-block bg-blue-500 bg-opacity-40 text-blue-100 text-sm font-medium px-4 py-1 rounded-full mb-6">
+        Trusted by 10,000+ IELTS students
+      </span>
+      <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+        Achieve Your Target<br />
+        <span class="text-yellow-300">IELTS Band Score</span>
+      </h1>
+      <p class="text-blue-100 text-xl mb-10 max-w-2xl mx-auto">
+        Practice speaking, sharpen your writing, and expand your vocabulary — all in one place. Interactive lessons designed by IELTS experts.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#" class="bg-yellow-400 text-gray-900 font-bold px-8 py-4 rounded-xl text-lg hover:bg-yellow-300 transition shadow-lg">
+          Start Practicing Free
+        </a>
+        <a href="#features" class="border-2 border-white text-white font-semibold px-8 py-4 rounded-xl text-lg hover:bg-white hover:text-blue-700 transition">
+          See How It Works
+        </a>
+      </div>
+      <!-- Stats row -->
+      <div class="mt-16 grid grid-cols-3 gap-6 max-w-lg mx-auto">
+        <div>
+          <div class="text-3xl font-extrabold">10K+</div>
+          <div class="text-blue-200 text-sm">Active Learners</div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold">95%</div>
+          <div class="text-blue-200 text-sm">Score Improvement</div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold">Band 7+</div>
+          <div class="text-blue-200 text-sm">Average Result</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Cards -->
+  <section id="features" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="text-4xl font-bold mb-4">Everything You Need to Succeed</h2>
+        <p class="text-gray-500 text-lg max-w-xl mx-auto">
+          Three core skill areas, expertly designed to take you from practice to performance.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <!-- Speaking Card -->
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition group border border-gray-100">
+          <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition">
+            <svg class="w-7 h-7 text-blue-600 group-hover:text-white transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-gray-800">Speaking</h3>
+          <p class="text-gray-500 mb-6 leading-relaxed">
+            Practice Part 1, 2, and 3 speaking tasks with real exam-style questions. Get instant feedback on fluency and coherence.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-600 mb-6">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-500 rounded-full"></span> 200+ speaking topics
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Model answers with audio
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Pronunciation tips
+            </li>
+          </ul>
+          <a href="speaking.html" class="text-blue-600 font-semibold hover:underline">Explore Speaking &rarr;</a>
+        </div>
+
+        <!-- Writing Card -->
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition group border border-gray-100 md:-mt-4 md:mb-4">
+          <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-600 transition">
+            <svg class="w-7 h-7 text-green-600 group-hover:text-white transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-gray-800">Writing</h3>
+          <p class="text-gray-500 mb-6 leading-relaxed">
+            Master Task 1 and Task 2 essays with structured templates, band-score criteria, and detailed sample responses.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-600 mb-6">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-500 rounded-full"></span> Task 1 & Task 2 guides
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-500 rounded-full"></span> Band 7/8/9 samples
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-500 rounded-full"></span> Grammar & cohesion tips
+            </li>
+          </ul>
+          <a href="writing.html" class="text-green-600 font-semibold hover:underline">Explore Writing &rarr;</a>
+        </div>
+
+        <!-- Vocabulary Card -->
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition group border border-gray-100">
+          <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition">
+            <svg class="w-7 h-7 text-purple-600 group-hover:text-white transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-gray-800">Vocabulary</h3>
+          <p class="text-gray-500 mb-6 leading-relaxed">
+            Build a high-band vocabulary with topic-based word lists, collocations, and spaced-repetition flashcards.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-600 mb-6">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-500 rounded-full"></span> 3,000+ IELTS words
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-500 rounded-full"></span> Topic-based word lists
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-500 rounded-full"></span> Smart flashcard review
+            </li>
+          </ul>
+          <a href="vocabulary.html" class="text-purple-600 font-semibold hover:underline">Explore Vocabulary &rarr;</a>
+        </div>
+
+        <!-- Reading Card -->
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition group border border-gray-100">
+          <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500 transition">
+            <svg class="w-7 h-7 text-amber-500 group-hover:text-white transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-gray-800">Reading</h3>
+          <p class="text-gray-500 mb-6 leading-relaxed">
+            Tackle academic passages with True/False/Not Given and multiple-choice questions under timed conditions.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-600 mb-6">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-amber-500 rounded-full"></span> 2 full passages
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-amber-500 rounded-full"></span> TFNG + Multiple Choice
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-amber-500 rounded-full"></span> Band score estimate
+            </li>
+          </ul>
+          <a href="reading.html" class="text-amber-600 font-semibold hover:underline">Explore Reading &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-4">Ready to hit your target band score?</h2>
+    <p class="text-blue-100 mb-8 text-lg">Join thousands of students already improving with IELTS Practice Hub.</p>
+    <a href="#" class="bg-white text-blue-700 font-bold px-10 py-4 rounded-xl text-lg hover:bg-gray-100 transition shadow-lg">
+      Start for Free Today
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 py-8 px-6 text-center text-sm">
+    <p>&copy; 2026 IELTS Practice Hub. Built for learners, by learners.</p>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('menu-icon').classList.toggle('hidden');
+      document.getElementById('close-icon').classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing Practice — IELTS Practice Hub</title>
+  <script src="darkmode.js"></script>
+  <link rel="stylesheet" href="darkmode.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">IP</span>
+        </div>
+        <span class="text-xl font-bold text-blue-600">IELTS Practice Hub</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+        <a href="speaking.html" class="text-gray-600 hover:text-blue-600 transition">Speaking</a>
+        <a href="writing.html" class="text-blue-600 font-semibold border-b-2 border-blue-600 pb-0.5">Writing</a>
+        <a href="reading.html" class="text-gray-600 hover:text-blue-600 transition">Reading</a>
+        <a href="vocabulary.html" class="text-gray-600 hover:text-blue-600 transition">Vocabulary</a>
+        <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+          class="md:hidden w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition"
+          aria-label="Toggle menu">
+          <svg id="menu-icon" class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="close-icon" class="w-5 h-5 text-gray-600 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button id="dark-toggle" onclick="toggleDarkMode()"
+          class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition text-base"
+          title="Toggle dark mode">🌙</button>
+        <a href="#" class="hidden sm:inline-block bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg z-40">
+    <div class="px-6 py-4 flex flex-col gap-1">
+      <a href="index.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Home</a>
+      <a href="speaking.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Speaking</a>
+      <a href="writing.html" class="font-semibold text-green-600 px-3 py-2 rounded-lg bg-green-50">Writing</a>
+      <a href="reading.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Reading</a>
+      <a href="vocabulary.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Vocabulary</a>
+      <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Dashboard</a>
+      <div class="border-t border-gray-100 mt-2 pt-3">
+        <a href="#" class="block text-center bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="bg-gradient-to-r from-green-600 to-emerald-700 text-white py-12 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-center gap-2 text-green-200 text-sm mb-3">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <span>/</span>
+        <span class="text-white">Writing Practice</span>
+      </div>
+      <h1 class="text-4xl font-extrabold mb-2">Writing Practice</h1>
+      <p class="text-green-100 text-lg">Timed essay practice for Task 1 and Task 2 — with live word count and feedback tips.</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-6 py-12">
+
+    <!-- Task Tabs -->
+    <div class="flex gap-2 mb-10 border-b border-gray-200">
+      <button onclick="showTask(1)" id="tab-1"
+        class="px-6 py-3 font-semibold text-sm rounded-t-lg transition bg-green-600 text-white">
+        Task 1 — Report / Letter
+      </button>
+      <button onclick="showTask(2)" id="tab-2"
+        class="px-6 py-3 font-semibold text-sm rounded-t-lg transition bg-white text-gray-500 hover:text-green-600 border border-b-0 border-gray-200">
+        Task 2 — Essay
+      </button>
+    </div>
+
+    <!-- ── TASK 1 ── -->
+    <section id="task-1">
+      <div class="grid lg:grid-cols-2 gap-8 mb-8">
+
+        <!-- Prompt Panel -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Task 1 · ~20 minutes · 150 words min</span>
+            </div>
+            <button onclick="newPrompt(1)" class="text-sm text-green-600 hover:underline font-medium">New prompt &rarr;</button>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-4">
+            <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-3">Your Task</h3>
+            <p id="t1-prompt" class="text-gray-800 leading-relaxed text-base"></p>
+          </div>
+
+          <!-- Band Criteria -->
+          <div class="bg-green-50 border border-green-200 rounded-2xl p-5">
+            <h3 class="font-bold text-green-800 text-sm mb-3">Marking Criteria</h3>
+            <div class="space-y-2">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                <div>
+                  <span class="font-semibold text-green-800 text-sm">Task Achievement</span>
+                  <p class="text-green-700 text-xs">Cover all key features of the data/diagram accurately.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                <div>
+                  <span class="font-semibold text-green-800 text-sm">Coherence & Cohesion</span>
+                  <p class="text-green-700 text-xs">Organise ideas logically with linking words.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                <div>
+                  <span class="font-semibold text-green-800 text-sm">Lexical Resource</span>
+                  <p class="text-green-700 text-xs">Use a range of vocabulary accurately.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                <div>
+                  <span class="font-semibold text-green-800 text-sm">Grammatical Range</span>
+                  <p class="text-green-700 text-xs">Mix simple and complex sentences correctly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Writing Panel -->
+        <div class="flex flex-col gap-4">
+          <!-- Timer -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-xl font-extrabold text-gray-800" id="t1-timer">20:00</div>
+                <div class="text-xs text-gray-400" id="t1-timer-label">Recommended time</div>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="startTaskTimer(1)" id="t1-start-btn"
+                class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-700 transition">
+                Start
+              </button>
+              <button onclick="resetTaskTimer(1)"
+                class="border border-gray-200 text-gray-500 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Textarea -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 flex flex-col flex-1">
+            <textarea
+              id="t1-essay"
+              oninput="updateWordCount(1)"
+              placeholder="Start writing your response here..."
+              class="w-full flex-1 min-h-64 resize-none text-gray-800 text-sm leading-relaxed focus:outline-none placeholder-gray-300">
+            </textarea>
+            <!-- Word count bar -->
+            <div class="mt-3 border-t border-gray-100 pt-3">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs text-gray-400">Word count</span>
+                <span id="t1-word-count" class="text-sm font-bold text-gray-600">0 / 150 min</span>
+              </div>
+              <div class="w-full bg-gray-100 rounded-full h-2">
+                <div id="t1-progress" class="h-2 rounded-full transition-all duration-300 bg-gray-300" style="width: 0%"></div>
+              </div>
+              <p id="t1-word-msg" class="text-xs mt-1 text-gray-400">Write at least 150 words.</p>
+            </div>
+          </div>
+
+          <!-- Useful Phrases -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
+            <h4 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-3">Useful phrases — click to copy</h4>
+            <div class="flex flex-wrap gap-2" id="t1-phrases"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TASK 2 ── -->
+    <section id="task-2" class="hidden">
+      <div class="grid lg:grid-cols-2 gap-8 mb-8">
+
+        <!-- Prompt Panel -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Task 2 · ~40 minutes · 250 words min</span>
+            <button onclick="newPrompt(2)" class="text-sm text-blue-600 hover:underline font-medium">New prompt &rarr;</button>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-4">
+            <div class="mb-4">
+              <span id="t2-type-badge" class="text-xs font-bold px-2 py-0.5 rounded-full"></span>
+            </div>
+            <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-3">Essay Question</h3>
+            <p id="t2-prompt" class="text-gray-800 leading-relaxed text-base mb-3"></p>
+            <p class="text-xs text-gray-400 italic">Give reasons for your answer and include any relevant examples from your own knowledge or experience.</p>
+          </div>
+
+          <!-- Essay Structure Guide -->
+          <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5">
+            <h3 class="font-bold text-blue-800 text-sm mb-3">Suggested Essay Structure</h3>
+            <div class="space-y-3">
+              <div class="flex gap-3">
+                <span class="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-blue-700 text-xs font-bold flex-shrink-0">1</span>
+                <div>
+                  <p class="font-semibold text-blue-800 text-sm">Introduction</p>
+                  <p class="text-blue-700 text-xs">Paraphrase the question + your thesis statement (~50 words)</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-blue-700 text-xs font-bold flex-shrink-0">2</span>
+                <div>
+                  <p class="font-semibold text-blue-800 text-sm">Body Paragraph 1</p>
+                  <p class="text-blue-700 text-xs">Main point + example + explanation (~100 words)</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-blue-700 text-xs font-bold flex-shrink-0">3</span>
+                <div>
+                  <p class="font-semibold text-blue-800 text-sm">Body Paragraph 2</p>
+                  <p class="text-blue-700 text-xs">Second point + example + explanation (~100 words)</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-blue-700 text-xs font-bold flex-shrink-0">4</span>
+                <div>
+                  <p class="font-semibold text-blue-800 text-sm">Conclusion</p>
+                  <p class="text-blue-700 text-xs">Summarise your main points (~50 words)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Writing Panel -->
+        <div class="flex flex-col gap-4">
+          <!-- Timer -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-xl font-extrabold text-gray-800" id="t2-timer">40:00</div>
+                <div class="text-xs text-gray-400" id="t2-timer-label">Recommended time</div>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="startTaskTimer(2)" id="t2-start-btn"
+                class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">
+                Start
+              </button>
+              <button onclick="resetTaskTimer(2)"
+                class="border border-gray-200 text-gray-500 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Textarea -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 flex flex-col flex-1">
+            <textarea
+              id="t2-essay"
+              oninput="updateWordCount(2)"
+              placeholder="Start writing your essay here..."
+              class="w-full flex-1 min-h-64 resize-none text-gray-800 text-sm leading-relaxed focus:outline-none placeholder-gray-300">
+            </textarea>
+            <!-- Word count bar -->
+            <div class="mt-3 border-t border-gray-100 pt-3">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs text-gray-400">Word count</span>
+                <span id="t2-word-count" class="text-sm font-bold text-gray-600">0 / 250 min</span>
+              </div>
+              <div class="w-full bg-gray-100 rounded-full h-2">
+                <div id="t2-progress" class="h-2 rounded-full transition-all duration-300 bg-gray-300" style="width: 0%"></div>
+              </div>
+              <p id="t2-word-msg" class="text-xs mt-1 text-gray-400">Write at least 250 words.</p>
+            </div>
+          </div>
+
+          <!-- Useful Phrases -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
+            <h4 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-3">Useful phrases — click to copy</h4>
+            <div class="flex flex-wrap gap-2" id="t2-phrases"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Copied toast -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-2 rounded-full text-sm font-medium opacity-0 transition-opacity duration-300 pointer-events-none">
+      Phrase copied!
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 py-8 px-6 text-center text-sm">
+    <p>&copy; 2026 IELTS Practice Hub. Built for learners, by learners.</p>
+  </footer>
+
+  <script>
+    // ── Data ──────────────────────────────────────────────────────────────────
+
+    const task1Prompts = [
+      "The bar chart below shows the number of visitors to three museums in London between 2010 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+      "The line graph below shows changes in the average global temperature between 1900 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+      "The pie charts below show the percentage of household income spent on different categories in the UK in 2000 and 2020. Summarise the information by selecting and reporting the main features.",
+      "The table below shows the population of five cities in Asia in 1990, 2005, and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+      "The diagram below shows how solar panels convert sunlight into electricity. Summarise the information by selecting and reporting the main features.",
+    ];
+
+    const task2Prompts = [
+      { type: "Opinion", badge: "bg-orange-100 text-orange-700", prompt: "Some people believe that university education should be free for all students, while others argue that students should pay for their own tuition. Discuss both views and give your own opinion." },
+      { type: "Discussion", badge: "bg-purple-100 text-purple-700", prompt: "In many countries, the gap between the rich and the poor is increasing. What problems does this cause? What solutions can you suggest?" },
+      { type: "Advantages & Disadvantages", badge: "bg-blue-100 text-blue-700", prompt: "More and more people are working from home rather than going to the office. Discuss the advantages and disadvantages of this trend." },
+      { type: "Opinion", badge: "bg-orange-100 text-orange-700", prompt: "Technology has made it easier for people to work remotely. Some say this will have a positive effect on society. To what extent do you agree or disagree?" },
+      { type: "Problem & Solution", badge: "bg-red-100 text-red-700", prompt: "Many cities around the world are facing severe traffic congestion. What are the main causes of this problem and what measures could be taken to address it?" },
+    ];
+
+    const t1Phrases = [
+      "The chart illustrates...", "It is clear that...", "Overall, the most notable trend...",
+      "peaked at", "declined sharply to", "remained relatively stable",
+      "In contrast,", "By comparison,", "rose steadily from",
+    ];
+
+    const t2Phrases = [
+      "It is widely acknowledged that...", "There are two schools of thought...",
+      "On the one hand,", "On the other hand,", "Furthermore,",
+      "However, it could be argued that...", "For instance,", "In conclusion,",
+      "This suggests that...", "A clear example of this is...",
+    ];
+
+    // ── State ─────────────────────────────────────────────────────────────────
+
+    let t1Index = 0, t2Index = 0;
+    const timers = { 1: null, 2: null };
+    const seconds = { 1: 20 * 60, 2: 40 * 60 };
+    const defaults = { 1: 20 * 60, 2: 40 * 60 };
+
+    // ── Prompts ───────────────────────────────────────────────────────────────
+
+    function renderPrompt(task) {
+      if (task === 1) {
+        document.getElementById('t1-prompt').textContent = task1Prompts[t1Index];
+      } else {
+        const p = task2Prompts[t2Index];
+        document.getElementById('t2-prompt').textContent = p.prompt;
+        const badge = document.getElementById('t2-type-badge');
+        badge.textContent = p.type;
+        badge.className = `text-xs font-bold px-2 py-0.5 rounded-full ${p.badge}`;
+      }
+    }
+
+    function newPrompt(task) {
+      if (task === 1) {
+        t1Index = (t1Index + 1) % task1Prompts.length;
+        document.getElementById('t1-essay').value = '';
+        updateWordCount(1);
+        resetTaskTimer(1);
+      } else {
+        t2Index = (t2Index + 1) % task2Prompts.length;
+        document.getElementById('t2-essay').value = '';
+        updateWordCount(2);
+        resetTaskTimer(2);
+      }
+      renderPrompt(task);
+    }
+
+    // ── Word Count ────────────────────────────────────────────────────────────
+
+    function countWords(text) {
+      return text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+    }
+
+    function updateWordCount(task) {
+      const min = task === 1 ? 150 : 250;
+      const text = document.getElementById(`t${task}-essay`).value;
+      const count = countWords(text);
+      const pct = Math.min((count / min) * 100, 100);
+
+      document.getElementById(`t${task}-word-count`).textContent = `${count} / ${min} min`;
+
+      const bar = document.getElementById(`t${task}-progress`);
+      bar.style.width = pct + '%';
+
+      const msg = document.getElementById(`t${task}-word-msg`);
+
+      if (count === 0) {
+        bar.className = 'h-2 rounded-full transition-all duration-300 bg-gray-300';
+        msg.textContent = `Write at least ${min} words.`;
+        msg.className = 'text-xs mt-1 text-gray-400';
+      } else if (count < min) {
+        bar.className = 'h-2 rounded-full transition-all duration-300 bg-yellow-400';
+        msg.textContent = `${min - count} more words needed.`;
+        msg.className = 'text-xs mt-1 text-yellow-600 font-medium';
+      } else {
+        bar.className = 'h-2 rounded-full transition-all duration-300 bg-green-500';
+        msg.textContent = `Great! You have reached the minimum word count.`;
+        msg.className = 'text-xs mt-1 text-green-600 font-medium';
+      }
+    }
+
+    // ── Timer ─────────────────────────────────────────────────────────────────
+
+    function formatTime(s) {
+      const m = Math.floor(s / 60);
+      const sec = s % 60;
+      return `${m}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    function saveActivity(task) {
+      const data = JSON.parse(localStorage.getItem('ieltshub') || '{}');
+      if (!data.writing) data.writing = { sessions: 0, task1: 0, task2: 0, lastDate: null };
+      data.writing.sessions++;
+      data.writing[`task${task}`] = (data.writing[`task${task}`] || 0) + 1;
+      data.writing.lastDate = new Date().toISOString();
+      updateStreak(data);
+      localStorage.setItem('ieltshub', JSON.stringify(data));
+    }
+
+    function updateStreak(data) {
+      const today = new Date().toDateString();
+      if (!data.streak) data.streak = { count: 0, lastDate: null };
+      if (data.streak.lastDate === today) return;
+      const yesterday = new Date(Date.now() - 86400000).toDateString();
+      data.streak.count = data.streak.lastDate === yesterday ? data.streak.count + 1 : 1;
+      data.streak.lastDate = today;
+    }
+
+    function startTaskTimer(task) {
+      if (timers[task]) return;
+      saveActivity(task);
+      const btn = document.getElementById(`t${task}-start-btn`);
+      btn.disabled = true;
+      btn.classList.add('opacity-50');
+
+      timers[task] = setInterval(() => {
+        seconds[task]--;
+        document.getElementById(`t${task}-timer`).textContent = formatTime(seconds[task]);
+
+        const label = document.getElementById(`t${task}-timer-label`);
+        const display = document.getElementById(`t${task}-timer`);
+
+        if (seconds[task] <= 60) {
+          display.classList.add('text-red-600');
+          display.classList.remove('text-gray-800');
+          label.textContent = 'Less than 1 minute left!';
+        }
+
+        if (seconds[task] <= 0) {
+          clearInterval(timers[task]);
+          timers[task] = null;
+          label.textContent = "Time's up!";
+        }
+      }, 1000);
+    }
+
+    function resetTaskTimer(task) {
+      clearInterval(timers[task]);
+      timers[task] = null;
+      seconds[task] = defaults[task];
+      document.getElementById(`t${task}-timer`).textContent = formatTime(seconds[task]);
+      document.getElementById(`t${task}-timer`).className = 'text-xl font-extrabold text-gray-800';
+      document.getElementById(`t${task}-timer-label`).textContent = 'Recommended time';
+      const btn = document.getElementById(`t${task}-start-btn`);
+      btn.disabled = false;
+      btn.classList.remove('opacity-50');
+    }
+
+    // ── Phrases ───────────────────────────────────────────────────────────────
+
+    function renderPhrases() {
+      ['t1-phrases', 't2-phrases'].forEach((id, i) => {
+        const phrases = i === 0 ? t1Phrases : t2Phrases;
+        const container = document.getElementById(id);
+        container.innerHTML = phrases.map(p => `
+          <button onclick="copyPhrase(this, '${p.replace(/'/g, "\\'")}')"
+            class="text-xs bg-gray-100 hover:bg-green-100 hover:text-green-700 text-gray-600 px-3 py-1.5 rounded-lg transition font-medium">
+            ${p}
+          </button>
+        `).join('');
+      });
+    }
+
+    function copyPhrase(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast();
+      });
+    }
+
+    function showToast() {
+      const t = document.getElementById('toast');
+      t.classList.remove('opacity-0');
+      t.classList.add('opacity-100');
+      setTimeout(() => {
+        t.classList.remove('opacity-100');
+        t.classList.add('opacity-0');
+      }, 1800);
+    }
+
+    // ── Tabs ──────────────────────────────────────────────────────────────────
+
+    function showTask(n) {
+      document.getElementById('task-1').classList.add('hidden');
+      document.getElementById('task-2').classList.add('hidden');
+      document.getElementById('task-' + n).classList.remove('hidden');
+
+      document.getElementById('tab-1').className = 'px-6 py-3 font-semibold text-sm rounded-t-lg transition bg-white text-gray-500 hover:text-green-600 border border-b-0 border-gray-200';
+      document.getElementById('tab-2').className = 'px-6 py-3 font-semibold text-sm rounded-t-lg transition bg-white text-gray-500 hover:text-green-600 border border-b-0 border-gray-200';
+
+      const activeColor = n === 1 ? 'bg-green-600' : 'bg-blue-600';
+      document.getElementById(`tab-${n}`).className = `px-6 py-3 font-semibold text-sm rounded-t-lg transition ${activeColor} text-white`;
+    }
+
+    // ── Mobile Menu ───────────────────────────────────────────────────────────
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('menu-icon').classList.toggle('hidden');
+      document.getElementById('close-icon').classList.toggle('hidden');
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+
+    renderPrompt(1);
+    renderPrompt(2);
+    renderPhrases();
+  </script>
+
+</body>
+</html>

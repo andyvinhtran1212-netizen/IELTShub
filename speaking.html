@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speaking Practice — IELTS Practice Hub</title>
+  <script src="darkmode.js"></script>
+  <link rel="stylesheet" href="darkmode.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">IP</span>
+        </div>
+        <span class="text-xl font-bold text-blue-600">IELTS Practice Hub</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+        <a href="speaking.html" class="text-blue-600 font-semibold border-b-2 border-blue-600 pb-0.5">Speaking</a>
+        <a href="writing.html" class="text-gray-600 hover:text-blue-600 transition">Writing</a>
+        <a href="reading.html" class="text-gray-600 hover:text-blue-600 transition">Reading</a>
+        <a href="vocabulary.html" class="text-gray-600 hover:text-blue-600 transition">Vocabulary</a>
+        <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+          class="md:hidden w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition"
+          aria-label="Toggle menu">
+          <svg id="menu-icon" class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="close-icon" class="w-5 h-5 text-gray-600 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button id="dark-toggle" onclick="toggleDarkMode()"
+          class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition text-base"
+          title="Toggle dark mode">🌙</button>
+        <a href="#" class="hidden sm:inline-block bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg z-40">
+    <div class="px-6 py-4 flex flex-col gap-1">
+      <a href="index.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Home</a>
+      <a href="speaking.html" class="font-semibold text-blue-600 px-3 py-2 rounded-lg bg-blue-50">Speaking</a>
+      <a href="writing.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Writing</a>
+      <a href="reading.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Reading</a>
+      <a href="vocabulary.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Vocabulary</a>
+      <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Dashboard</a>
+      <div class="border-t border-gray-100 mt-2 pt-3">
+        <a href="#" class="block text-center bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-12 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex items-center gap-2 text-blue-200 text-sm mb-3">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <span>/</span>
+        <span class="text-white">Speaking Practice</span>
+      </div>
+      <h1 class="text-4xl font-extrabold mb-2">Speaking Practice</h1>
+      <p class="text-blue-100 text-lg">Work through Parts 1, 2, and 3 just like the real IELTS exam.</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-6 py-12">
+
+    <!-- Part Tabs -->
+    <div class="flex gap-2 mb-10 border-b border-gray-200">
+      <button onclick="showPart(1)" id="tab-1"
+        class="px-6 py-3 font-semibold text-sm rounded-t-lg transition tab-btn bg-blue-600 text-white">
+        Part 1 — Interview
+      </button>
+      <button onclick="showPart(2)" id="tab-2"
+        class="px-6 py-3 font-semibold text-sm rounded-t-lg transition tab-btn bg-white text-gray-500 hover:text-blue-600 border border-b-0 border-gray-200">
+        Part 2 — Cue Card
+      </button>
+      <button onclick="showPart(3)" id="tab-3"
+        class="px-6 py-3 font-semibold text-sm rounded-t-lg transition tab-btn bg-white text-gray-500 hover:text-blue-600 border border-b-0 border-gray-200">
+        Part 3 — Discussion
+      </button>
+    </div>
+
+    <!-- PART 1 -->
+    <section id="part-1">
+      <div class="mb-6">
+        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Part 1 · 4–5 minutes</span>
+        <p class="text-gray-500 mt-3 text-sm">The examiner asks general questions about yourself and familiar topics. Answer naturally — aim for 2–3 sentences per answer.</p>
+      </div>
+
+      <div class="space-y-4" id="part1-questions">
+        <!-- Questions generated by JS -->
+      </div>
+
+      <div class="mt-8 bg-blue-50 border border-blue-200 rounded-2xl p-6">
+        <h3 class="font-bold text-blue-800 mb-2">Tips for Part 1</h3>
+        <ul class="text-sm text-blue-700 space-y-1 list-disc list-inside">
+          <li>Don't give one-word answers — extend with a reason or example.</li>
+          <li>Use natural fillers: "Well, to be honest...", "That's a good question..."</li>
+          <li>Speak at a comfortable pace — don't rush.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PART 2 -->
+    <section id="part-2" class="hidden">
+      <div class="mb-6">
+        <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Part 2 · 3–4 minutes</span>
+        <p class="text-gray-500 mt-3 text-sm">You get a cue card topic. You have <strong>1 minute to prepare</strong>, then speak for <strong>1–2 minutes</strong>.</p>
+      </div>
+
+      <!-- Cue Card -->
+      <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-8 mb-6">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-lg font-bold text-gray-700">Cue Card Topic</h3>
+          <button onclick="newCueCard()" class="text-sm text-blue-600 hover:underline font-medium">New topic &rarr;</button>
+        </div>
+        <div id="cue-card-topic" class="text-xl font-bold text-gray-800 mb-6"></div>
+        <div id="cue-card-points" class="space-y-2 text-gray-600 text-sm"></div>
+      </div>
+
+      <!-- Timer -->
+      <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-8 text-center">
+        <div class="text-6xl font-extrabold text-blue-600 mb-2" id="timer-display">1:00</div>
+        <div class="text-gray-500 text-sm mb-6" id="timer-label">Preparation time</div>
+        <div class="flex gap-3 justify-center">
+          <button onclick="startTimer()" id="start-btn"
+            class="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition">
+            Start Prep Timer
+          </button>
+          <button onclick="resetTimer()"
+            class="border border-gray-300 text-gray-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition">
+            Reset
+          </button>
+        </div>
+        <p class="text-xs text-gray-400 mt-4">After prep time ends, speak for 1–2 minutes on the topic above.</p>
+      </div>
+    </section>
+
+    <!-- PART 3 -->
+    <section id="part-3" class="hidden">
+      <div class="mb-6">
+        <span class="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Part 3 · 4–5 minutes</span>
+        <p class="text-gray-500 mt-3 text-sm">The examiner asks abstract discussion questions related to the Part 2 topic. Give detailed, reasoned answers.</p>
+      </div>
+
+      <div class="space-y-4" id="part3-questions"></div>
+
+      <div class="mt-8 bg-purple-50 border border-purple-200 rounded-2xl p-6">
+        <h3 class="font-bold text-purple-800 mb-2">Tips for Part 3</h3>
+        <ul class="text-sm text-purple-700 space-y-1 list-disc list-inside">
+          <li>Use the PEEL structure: Point → Example → Explanation → Link.</li>
+          <li>Show both sides: "On one hand... On the other hand..."</li>
+          <li>Use high-band phrases: "It could be argued that...", "This raises the question of..."</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 py-8 px-6 text-center text-sm">
+    <p>&copy; 2026 IELTS Practice Hub. Built for learners, by learners.</p>
+  </footer>
+
+  <script>
+    // ── Data ──────────────────────────────────────────────────────────────────
+
+    const part1Questions = [
+      { topic: "Hometown", questions: ["Where are you from?", "What do you like most about your hometown?", "Has your hometown changed much over the years?"] },
+      { topic: "Work & Study", questions: ["Do you work or are you a student?", "What do you enjoy most about your studies/job?", "Would you like to change your career in the future?"] },
+      { topic: "Hobbies", questions: ["What do you enjoy doing in your free time?", "Is this a popular hobby in your country?", "Did you have the same hobbies when you were younger?"] },
+      { topic: "Travel", questions: ["Do you like travelling?", "Where is the most interesting place you have visited?", "Do you prefer travelling alone or with others?"] },
+      { topic: "Food", questions: ["What is your favourite food?", "Do you prefer eating at home or in restaurants?", "Is food important to you? Why?"] },
+    ];
+
+    const cueCards = [
+      {
+        topic: "Describe a book you have read that had a significant impact on you.",
+        points: ["What the book was about", "When and why you read it", "What impact it had on you", "Explain why you found it so meaningful"],
+      },
+      {
+        topic: "Describe a memorable trip or journey you have taken.",
+        points: ["Where you went", "Who you went with", "What you did there", "Explain why it was so memorable"],
+      },
+      {
+        topic: "Describe a person who has influenced you greatly.",
+        points: ["Who this person is", "How you know them", "What they have done that influenced you", "Explain why their influence is important to you"],
+      },
+      {
+        topic: "Describe a skill you have learned that you find useful.",
+        points: ["What the skill is", "When and how you learned it", "How you use it now", "Explain why it is useful to you"],
+      },
+    ];
+
+    const part3Questions = [
+      "Do you think reading habits are changing in modern society? Why?",
+      "How has technology changed the way people communicate and interact?",
+      "What role do influential people play in shaping society?",
+      "Should governments invest more in education or healthcare? Why?",
+      "How important is it for young people to have a wide range of skills?",
+      "Do you think travel broadens the mind? In what ways?",
+    ];
+
+    // ── Render Part 1 ─────────────────────────────────────────────────────────
+
+    function renderPart1() {
+      const container = document.getElementById('part1-questions');
+      container.innerHTML = part1Questions.map((group, gi) => `
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div class="bg-gray-50 px-6 py-3 border-b border-gray-100 flex items-center justify-between">
+            <span class="font-semibold text-gray-700">Topic: ${group.topic}</span>
+            <span class="text-xs text-gray-400">${group.questions.length} questions</span>
+          </div>
+          <div class="divide-y divide-gray-50">
+            ${group.questions.map((q, qi) => `
+              <div class="px-6 py-4 flex items-start gap-4 group cursor-pointer hover:bg-blue-50 transition" onclick="toggleAnswer(${gi},${qi})">
+                <span class="w-7 h-7 rounded-full bg-blue-100 text-blue-600 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">Q</span>
+                <div class="flex-1">
+                  <p class="text-gray-800 font-medium">${q}</p>
+                  <p id="ans-${gi}-${qi}" class="hidden mt-2 text-sm text-blue-700 bg-blue-50 rounded-lg px-3 py-2">
+                    Click to see a model answer hint. Try answering first!
+                  </p>
+                </div>
+                <span class="text-gray-300 group-hover:text-blue-400 transition text-lg">&#x25BC;</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleAnswer(gi, qi) {
+      const el = document.getElementById(`ans-${gi}-${qi}`);
+      el.classList.toggle('hidden');
+    }
+
+    // ── Render Part 2 Cue Card ────────────────────────────────────────────────
+
+    let currentCard = 0;
+
+    function renderCueCard() {
+      const card = cueCards[currentCard];
+      document.getElementById('cue-card-topic').textContent = card.topic;
+      document.getElementById('cue-card-points').innerHTML = card.points.map(p => `
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 bg-green-500 rounded-full flex-shrink-0"></span>
+          <span>${p}</span>
+        </div>
+      `).join('');
+    }
+
+    function newCueCard() {
+      currentCard = (currentCard + 1) % cueCards.length;
+      resetTimer();
+      renderCueCard();
+    }
+
+    // ── Timer ─────────────────────────────────────────────────────────────────
+
+    let timerInterval = null;
+    let secondsLeft = 60;
+    let phase = 'prep'; // 'prep' | 'speak'
+
+    function startTimer() {
+      if (timerInterval) return;
+      document.getElementById('start-btn').disabled = true;
+      document.getElementById('start-btn').classList.add('opacity-50');
+
+      timerInterval = setInterval(() => {
+        secondsLeft--;
+        updateTimerDisplay();
+
+        if (secondsLeft <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+
+          if (phase === 'prep') {
+            phase = 'speak';
+            secondsLeft = 120;
+            document.getElementById('timer-label').textContent = 'Speaking time — talk now!';
+            document.getElementById('timer-display').classList.remove('text-blue-600');
+            document.getElementById('timer-display').classList.add('text-green-600');
+            document.getElementById('start-btn').textContent = 'Start Speaking Timer';
+            document.getElementById('start-btn').disabled = false;
+            document.getElementById('start-btn').classList.remove('opacity-50');
+            document.getElementById('start-btn').onclick = startSpeakTimer;
+          } else {
+            document.getElementById('timer-label').textContent = 'Time is up!';
+          }
+        }
+      }, 1000);
+    }
+
+    function saveActivity() {
+      const data = JSON.parse(localStorage.getItem('ieltshub') || '{}');
+      if (!data.speaking) data.speaking = { sessions: 0, lastDate: null };
+      data.speaking.sessions++;
+      data.speaking.lastDate = new Date().toISOString();
+      updateStreak(data);
+      localStorage.setItem('ieltshub', JSON.stringify(data));
+    }
+
+    function updateStreak(data) {
+      const today = new Date().toDateString();
+      if (!data.streak) data.streak = { count: 0, lastDate: null };
+      if (data.streak.lastDate === today) return;
+      const yesterday = new Date(Date.now() - 86400000).toDateString();
+      data.streak.count = data.streak.lastDate === yesterday ? data.streak.count + 1 : 1;
+      data.streak.lastDate = today;
+    }
+
+    function startSpeakTimer() {
+      if (timerInterval) return;
+      saveActivity();
+      document.getElementById('start-btn').disabled = true;
+      document.getElementById('start-btn').classList.add('opacity-50');
+      timerInterval = setInterval(() => {
+        secondsLeft--;
+        updateTimerDisplay();
+        if (secondsLeft <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          document.getElementById('timer-label').textContent = 'Time is up! Great job.';
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(secondsLeft / 60);
+      const s = secondsLeft % 60;
+      document.getElementById('timer-display').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      secondsLeft = 60;
+      phase = 'prep';
+      document.getElementById('timer-display').textContent = '1:00';
+      document.getElementById('timer-display').className = 'text-6xl font-extrabold text-blue-600 mb-2';
+      document.getElementById('timer-label').textContent = 'Preparation time';
+      const btn = document.getElementById('start-btn');
+      btn.textContent = 'Start Prep Timer';
+      btn.disabled = false;
+      btn.classList.remove('opacity-50');
+      btn.onclick = startTimer;
+    }
+
+    // ── Render Part 3 ─────────────────────────────────────────────────────────
+
+    function renderPart3() {
+      const container = document.getElementById('part3-questions');
+      container.innerHTML = part3Questions.map((q, i) => `
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex items-start gap-4 hover:shadow-md transition">
+          <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 font-bold text-sm flex items-center justify-center flex-shrink-0 mt-0.5">${i + 1}</span>
+          <p class="text-gray-800 text-lg leading-relaxed">${q}</p>
+        </div>
+      `).join('');
+    }
+
+    // ── Tab Switching ─────────────────────────────────────────────────────────
+
+    function showPart(n) {
+      [1, 2, 3].forEach(i => {
+        document.getElementById(`part-${i}`).classList.add('hidden');
+        const tab = document.getElementById(`tab-${i}`);
+        tab.className = 'px-6 py-3 font-semibold text-sm rounded-t-lg transition tab-btn bg-white text-gray-500 hover:text-blue-600 border border-b-0 border-gray-200';
+      });
+      document.getElementById(`part-${n}`).classList.remove('hidden');
+      const active = document.getElementById(`tab-${n}`);
+      active.className = 'px-6 py-3 font-semibold text-sm rounded-t-lg transition tab-btn bg-blue-600 text-white';
+    }
+
+    // ── Mobile Menu ───────────────────────────────────────────────────────────
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('menu-icon').classList.toggle('hidden');
+      document.getElementById('close-icon').classList.toggle('hidden');
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+
+    renderPart1();
+    renderCueCard();
+    renderPart3();
+  </script>
+
+</body>
+</html>
