@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — IELTS Practice Hub</title>
+  <script src="darkmode.js"></script>
+  <link rel="stylesheet" href="darkmode.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Input focus ring */
+    .field-input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
+    .field-input.error  { border-color: #ef4444; }
+    .field-input.valid  { border-color: #22c55e; }
+    html.dark .field-input { background-color: #0f172a !important; color: #e2e8f0 !important; border-color: #334155 !important; }
+    html.dark .field-input:focus { border-color: #818cf8 !important; box-shadow: 0 0 0 3px rgba(129,140,248,0.15) !important; }
+    html.dark .field-input.error { border-color: #f87171 !important; }
+    html.dark .field-input.valid { border-color: #4ade80 !important; }
+
+    /* Animated checkmark */
+    @keyframes pop-in {
+      0%   { transform: scale(0); opacity: 0; }
+      70%  { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .pop-in { animation: pop-in 0.4s ease forwards; }
+
+    /* Shake on submit error */
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%     { transform: translateX(-8px); }
+      40%     { transform: translateX(8px); }
+      60%     { transform: translateX(-5px); }
+      80%     { transform: translateX(5px); }
+    }
+    .shake { animation: shake 0.4s ease; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">IP</span>
+        </div>
+        <span class="text-xl font-bold text-blue-600">IELTS Practice Hub</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+        <a href="speaking.html" class="text-gray-600 hover:text-blue-600 transition">Speaking</a>
+        <a href="writing.html" class="text-gray-600 hover:text-blue-600 transition">Writing</a>
+        <a href="reading.html" class="text-gray-600 hover:text-blue-600 transition">Reading</a>
+        <a href="vocabulary.html" class="text-gray-600 hover:text-blue-600 transition">Vocabulary</a>
+        <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+        <a href="contact.html" class="text-indigo-600 font-semibold border-b-2 border-indigo-500 pb-0.5">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+          class="md:hidden w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition">
+          <svg id="menu-icon" class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="close-icon" class="w-5 h-5 text-gray-600 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button id="dark-toggle" onclick="toggleDarkMode()"
+          class="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition text-base"
+          title="Toggle dark mode">🌙</button>
+        <a href="#" class="hidden sm:inline-block bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition text-sm">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg z-40">
+    <div class="px-6 py-4 flex flex-col gap-1">
+      <a href="index.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Home</a>
+      <a href="speaking.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Speaking</a>
+      <a href="writing.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Writing</a>
+      <a href="reading.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Reading</a>
+      <a href="vocabulary.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Vocabulary</a>
+      <a href="dashboard.html" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition">Dashboard</a>
+      <a href="contact.html" class="font-semibold text-indigo-600 px-3 py-2 rounded-lg bg-indigo-50">Contact</a>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white py-12 px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex items-center gap-2 text-indigo-200 text-sm mb-3">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <span>/</span>
+        <span class="text-white">Contact</span>
+      </div>
+      <h1 class="text-4xl font-extrabold mb-2">Get in Touch</h1>
+      <p class="text-indigo-100 text-lg">Questions, feedback, or suggestions? We'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <main class="max-w-3xl mx-auto px-6 py-12">
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Contact Info -->
+      <div class="space-y-6">
+        <div>
+          <h2 class="text-lg font-bold text-gray-800 mb-4">Contact Info</h2>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 bg-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-gray-700">Email</p>
+                <p class="text-sm text-gray-500">hello@ieltshub.com</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 bg-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-gray-700">Response time</p>
+                <p class="text-sm text-gray-500">Within 24 hours</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 bg-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-gray-700">Based in</p>
+                <p class="text-sm text-gray-500">Vietnam</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-5">
+          <h3 class="font-bold text-indigo-800 text-sm mb-3">Common questions</h3>
+          <div class="space-y-3" id="faq-list"></div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="md:col-span-2">
+
+        <!-- Success State (hidden by default) -->
+        <div id="success-state" class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-10 text-center">
+          <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5 pop-in">
+            <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-extrabold text-gray-800 mb-2">Message Sent!</h2>
+          <p class="text-gray-500 mb-6">Thanks for reaching out. We'll get back to you within 24 hours.</p>
+          <button onclick="resetForm()"
+            class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition">
+            Send Another Message
+          </button>
+        </div>
+
+        <!-- Form -->
+        <form id="contact-form" onsubmit="handleSubmit(event)" novalidate
+          class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 space-y-5">
+
+          <h2 class="text-xl font-bold text-gray-800 mb-1">Send a Message</h2>
+          <p class="text-sm text-gray-400 mb-4">All fields are required.</p>
+
+          <!-- Name -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="name">
+              Full Name
+            </label>
+            <div class="relative">
+              <input type="text" id="name" placeholder="e.g. Andy Chen"
+                oninput="validateField('name')"
+                class="field-input w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm transition-all" />
+              <span id="name-icon" class="absolute right-3 top-3 text-lg hidden"></span>
+            </div>
+            <p id="name-error" class="hidden mt-1.5 text-xs text-red-500 font-medium"></p>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="email">
+              Email Address
+            </label>
+            <div class="relative">
+              <input type="email" id="email" placeholder="e.g. andy@example.com"
+                oninput="validateField('email')"
+                class="field-input w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm transition-all" />
+              <span id="email-icon" class="absolute right-3 top-3 text-lg hidden"></span>
+            </div>
+            <p id="email-error" class="hidden mt-1.5 text-xs text-red-500 font-medium"></p>
+          </div>
+
+          <!-- Subject -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="subject">
+              Subject
+            </label>
+            <div class="relative">
+              <select id="subject" onchange="validateField('subject')"
+                class="field-input w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm transition-all appearance-none bg-white">
+                <option value="">Select a topic...</option>
+                <option value="general">General Question</option>
+                <option value="feedback">Feedback / Suggestion</option>
+                <option value="bug">Report a Bug</option>
+                <option value="content">Content Request</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="absolute right-3 top-3 text-gray-400 pointer-events-none">▾</span>
+            </div>
+            <p id="subject-error" class="hidden mt-1.5 text-xs text-red-500 font-medium"></p>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="message">
+              Message
+              <span id="char-count" class="text-gray-400 font-normal ml-2">0 / 500</span>
+            </label>
+            <textarea id="message" rows="5" placeholder="Write your message here..."
+              oninput="validateField('message'); updateCharCount()"
+              class="field-input w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm transition-all resize-none"></textarea>
+            <p id="message-error" class="hidden mt-1.5 text-xs text-red-500 font-medium"></p>
+          </div>
+
+          <!-- Consent checkbox -->
+          <div class="flex items-start gap-3 pt-1">
+            <input type="checkbox" id="consent" onchange="validateField('consent')"
+              class="w-4 h-4 mt-0.5 accent-indigo-600 flex-shrink-0" />
+            <label for="consent" class="text-sm text-gray-600 cursor-pointer">
+              I agree that my data may be used to respond to this message.
+            </label>
+          </div>
+          <p id="consent-error" class="hidden -mt-3 text-xs text-red-500 font-medium"></p>
+
+          <!-- Submit -->
+          <button type="submit" id="submit-btn"
+            class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold text-base hover:bg-indigo-700 transition flex items-center justify-center gap-2">
+            <span id="submit-text">Send Message</span>
+            <svg id="submit-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+            </svg>
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-gray-400 py-8 px-6 text-center text-sm mt-12">
+    <p>&copy; 2026 IELTS Practice Hub. Built for learners, by learners.</p>
+  </footer>
+
+  <script>
+    // ── FAQ Data ──────────────────────────────────────────────────────────────
+
+    const faqs = [
+      { q: "Is this site free?", a: "Yes, completely free." },
+      { q: "Can I suggest new topics?", a: "Absolutely — use the form!" },
+      { q: "Are the passages real IELTS?", a: "They are practice-style, not official." },
+    ];
+
+    function renderFAQ() {
+      document.getElementById('faq-list').innerHTML = faqs.map((f, i) => `
+        <div>
+          <button onclick="toggleFAQ(${i})"
+            class="w-full text-left text-xs font-semibold text-indigo-700 flex justify-between items-center">
+            <span>${f.q}</span>
+            <span id="faq-icon-${i}" class="text-indigo-400">+</span>
+          </button>
+          <p id="faq-ans-${i}" class="hidden mt-1 text-xs text-indigo-600 leading-relaxed">${f.a}</p>
+        </div>
+      `).join('');
+    }
+
+    function toggleFAQ(i) {
+      const ans  = document.getElementById(`faq-ans-${i}`);
+      const icon = document.getElementById(`faq-icon-${i}`);
+      const open = !ans.classList.contains('hidden');
+      ans.classList.toggle('hidden', open);
+      icon.textContent = open ? '+' : '−';
+    }
+
+    // ── Validation Rules ──────────────────────────────────────────────────────
+
+    const rules = {
+      name: {
+        validate: v => v.trim().length >= 2,
+        message:  'Please enter your full name (at least 2 characters).',
+      },
+      email: {
+        validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+        message:  'Please enter a valid email address.',
+      },
+      subject: {
+        validate: v => v !== '',
+        message:  'Please select a subject.',
+      },
+      message: {
+        validate: v => v.trim().length >= 20,
+        message:  'Message must be at least 20 characters.',
+      },
+      consent: {
+        validate: () => document.getElementById('consent').checked,
+        message:  'Please tick the box to continue.',
+      },
+    };
+
+    // ── Field Validation ──────────────────────────────────────────────────────
+
+    function validateField(id) {
+      const rule     = rules[id];
+      const input    = document.getElementById(id);
+      const errorEl  = document.getElementById(`${id}-error`);
+      const iconEl   = document.getElementById(`${id}-icon`);
+      const value    = input.value;
+      const isValid  = rule.validate(value);
+
+      // Error text
+      if (errorEl) {
+        errorEl.textContent = rule.message;
+        errorEl.classList.toggle('hidden', isValid);
+      }
+
+      // Border colour
+      input.classList.remove('error', 'valid');
+      if (value !== '' || id === 'consent') {
+        input.classList.add(isValid ? 'valid' : 'error');
+      }
+
+      // Icon (only for text/email inputs)
+      if (iconEl) {
+        iconEl.classList.toggle('hidden', value === '');
+        iconEl.textContent = isValid ? '✅' : '❌';
+      }
+
+      return isValid;
+    }
+
+    function validateAll() {
+      return Object.keys(rules).map(id => validateField(id)).every(Boolean);
+    }
+
+    // ── Char Counter ──────────────────────────────────────────────────────────
+
+    function updateCharCount() {
+      const len = document.getElementById('message').value.length;
+      const el  = document.getElementById('char-count');
+      el.textContent = `${len} / 500`;
+      el.className = len > 500
+        ? 'text-red-500 font-semibold ml-2'
+        : len > 400
+        ? 'text-orange-400 font-normal ml-2'
+        : 'text-gray-400 font-normal ml-2';
+    }
+
+    // ── Submit ────────────────────────────────────────────────────────────────
+
+    function handleSubmit(e) {
+      e.preventDefault(); // ← Prevents page reload — KEY concept
+
+      const isValid = validateAll();
+
+      if (!isValid) {
+        // Shake the button
+        const btn = document.getElementById('submit-btn');
+        btn.classList.add('shake');
+        setTimeout(() => btn.classList.remove('shake'), 500);
+
+        // Scroll to first error
+        const firstError = document.querySelector('.field-input.error');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Simulate sending (spinner for 1.5s, then show success)
+      const btn     = document.getElementById('submit-btn');
+      const spinner = document.getElementById('submit-spinner');
+      const text    = document.getElementById('submit-text');
+
+      btn.disabled = true;
+      spinner.classList.remove('hidden');
+      text.textContent = 'Sending...';
+
+      setTimeout(() => {
+        document.getElementById('contact-form').classList.add('hidden');
+        const success = document.getElementById('success-state');
+        success.classList.remove('hidden');
+        // Re-trigger animation
+        const circle = success.querySelector('.pop-in');
+        circle.classList.remove('pop-in');
+        void circle.offsetWidth; // force reflow
+        circle.classList.add('pop-in');
+      }, 1500);
+    }
+
+    // ── Reset ─────────────────────────────────────────────────────────────────
+
+    function resetForm() {
+      document.getElementById('contact-form').reset();
+      document.getElementById('contact-form').classList.remove('hidden');
+      document.getElementById('success-state').classList.add('hidden');
+
+      // Clear all validation states
+      Object.keys(rules).forEach(id => {
+        const input   = document.getElementById(id);
+        const errorEl = document.getElementById(`${id}-error`);
+        const iconEl  = document.getElementById(`${id}-icon`);
+        input.classList.remove('error', 'valid');
+        if (errorEl) errorEl.classList.add('hidden');
+        if (iconEl)  iconEl.classList.add('hidden');
+      });
+
+      updateCharCount();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = false;
+      document.getElementById('submit-spinner').classList.add('hidden');
+      document.getElementById('submit-text').textContent = 'Send Message';
+    }
+
+    // ── Mobile Menu ───────────────────────────────────────────────────────────
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('menu-icon').classList.toggle('hidden');
+      document.getElementById('close-icon').classList.toggle('hidden');
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    renderFAQ();
+  </script>
+
+</body>
+</html>

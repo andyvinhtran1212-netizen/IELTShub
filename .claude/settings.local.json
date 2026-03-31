@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git --version)"
+      "Bash(git --version)",
+      "Bash(for file:*)",
+      "Bash(do)",
+      "Bash(sed -i '' 's|<a href=\"\"dashboard.html\"\" class=\"\"text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition\"\">Dashboard</a>|<a href=\"\"dashboard.html\"\" class=\"\"text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition\"\">Dashboard</a>\\\\n      <a href=\"\"contact.html\"\" class=\"\"text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition\"\">Contact</a>|' /Users/trantrongvinh/Documents/IELTSHub/$file)",
+      "Bash(done)"
     ]
   }
 }
